@@ -62,6 +62,7 @@
       <OptimizeReferences Condition="'$(Configuration)'=='Release'">true</OptimizeReferences>
       <SetChecksum Condition="'$(Configuration)'=='Release'">true</SetChecksum>
       <AdditionalOptions>/DLL /ENTRY:"_DllMainCRTStartup" /ALIGN:128,4096 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>xapilib.lib;xaudio2.lib;x3daudio.lib;xact3ltcg.lib;xmahal.lib;xmp.lib;xmcoreltcg.lib</AdditionalDependencies>
     </Link>
     <Deploy>
       <DeploymentType>CopyToHardDrive</DeploymentType>
@@ -80,9 +81,17 @@
 
       <ClCompile Include="src\common\config.cpp" />
 
+      <ClCompile Include="src\game\ngl\mp\components\audio_module.cpp" />
+      <ClCompile Include="src\game\ngl\mp\components\audio_manager.cpp" />
+
+      <ClCompile Include="src\game\ngl\mp\components\save_load.cpp" />
+      <ClCompile Include="src\game\ngl\mp\components\project_velocity.cpp" />
+      <ClCompile Include="src\game\ngl\mp\main.cpp" />
+
       <ClCompile Include="src\game\iw2\sp\components\scr_parser.cpp" />
       <ClCompile Include="src\game\iw2\sp\main.cpp" />
 
+      <ClCompile Include="src\game\iw2\mp\components\project_velocity.cpp" />
       <ClCompile Include="src\game\iw2\mp\components\g_scr_main.cpp" />
       <ClCompile Include="src\game\iw2\mp\components\scr_parser.cpp" />
       <ClCompile Include="src\game\iw2\mp\main.cpp" />
@@ -148,7 +157,7 @@
 
       <ClCompile Include="src\game\t4\sp\components\clipmap.cpp" />
       <ClCompile Include="src\game\t4\sp\components\g_scr_mover.cpp" />
-      <ClCompile Include="src\game\t4\sp\components\g_client_fields.cpp" /> 
+      <ClCompile Include="src\game\t4\sp\components\g_client_fields.cpp" />
       <ClCompile Include="src\game\t4\sp\components\g_client_script_cmd.cpp" />
       <ClCompile Include="src\game\t4\sp\components\g_scr_main.cpp" />
       <ClCompile Include="src\game\t4\sp\components\scr_parser.cpp" />
@@ -184,11 +193,21 @@
       <ClInclude Include="src\common\branding.h" />
       <ClInclude Include="src\common\config.h" />
 
+      <ClInclude Include="src\game\ngl\mp\components\audio_config.h"/>
+      <ClInclude Include="src\game\ngl\mp\components\audio_manager.h"/>
+      <ClInclude Include="src\game\ngl\mp\components\audio_module.h" /> 
+       
+      <ClInclude Include="src\game\ngl\mp\structs.h" />
+      <ClInclude Include="src\game\ngl\mp\symbols.h" />
+      <ClInclude Include="src\game\ngl\mp\components\save_load.h" />
+      <ClInclude Include="src\game\ngl\mp\components\project_velocity.h" />
+      
       <ClInclude Include="src\game\iw2\sp\components\scr_parser.h" />
       <ClInclude Include="src\game\iw2\sp\main.h" />
       <ClInclude Include="src\game\iw2\sp\structs.h" />
       <ClInclude Include="src\game\iw2\sp\symbols.h" />
 
+      <ClInclude Include="src\game\iw2\mp\components\project_velocity.h" />
       <ClInclude Include="src\game\iw2\mp\components\scr_parser.h" />
       <ClInclude Include="src\game\iw2\mp\main.h" />
       <ClInclude Include="src\game\iw2\mp\structs.h" />

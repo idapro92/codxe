@@ -146,6 +146,14 @@ const GameInfo GAME_INFO[] = {
         "Call of Duty: Modern Warfare 3 MP Title Update #24",
         &CreatePlugin<iw5::mp::IW5_MP_Plugin>,
     },
+    {
+        0x415607E1,
+        0x45B56A5C,// Mon Jan 22 20 : 52 : 28 2007
+        "codmp_xenonf.xex",
+        "NGL MP TU3",
+        "Call of Duty: 3 Title Update #3",
+        &CreatePlugin<ngl::mp::NGL_MP_Plugin>,
+    },
 };
 
 const GameInfo *FindGameInfo(DWORD title_id, DWORD timestamp)
@@ -196,12 +204,11 @@ PluginManager::~PluginManager()
         CloseHandle(m_monitor_thread);
         m_monitor_thread = nullptr;
     }
-
+    
     if (m_current_plugin)
     {
         DbgPrint("[codxe][PluginManager] Cleaning up current plugin during shutdown\n");
         m_current_plugin.reset();
-        Detour::ResetTrampolinePool();
     }
 }
 
@@ -239,7 +246,6 @@ void PluginManager::OnTitleChanged(DWORD title_id, DWORD timestamp)
     {
         DbgPrint("[codxe][PluginManager] Cleaning up current plugin\n");
         m_current_plugin.reset();
-        Detour::ResetTrampolinePool();
     }
 
     // Special case
@@ -264,7 +270,7 @@ void PluginManager::OnTitleChanged(DWORD title_id, DWORD timestamp)
     // On Xenia we can immediately init the plugin. On the xbox wait a bit for loading
     if (!xbox::IsXenia())
     {
-        Sleep(2000); // Allow some time for the game to load
+        Sleep(5000); // Allow some time for the game to load
     }
 
     auto plugin = info->createPlugin();
