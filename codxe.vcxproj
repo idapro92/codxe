@@ -62,7 +62,6 @@
       <OptimizeReferences Condition="'$(Configuration)'=='Release'">true</OptimizeReferences>
       <SetChecksum Condition="'$(Configuration)'=='Release'">true</SetChecksum>
       <AdditionalOptions>/DLL /ENTRY:"_DllMainCRTStartup" /ALIGN:128,4096 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>xapilib.lib;xaudio2.lib;x3daudio.lib;xact3ltcg.lib;xmahal.lib;xmp.lib;xmcoreltcg.lib</AdditionalDependencies>
     </Link>
     <Deploy>
       <DeploymentType>CopyToHardDrive</DeploymentType>
@@ -80,9 +79,6 @@
       </ClCompile>
 
       <ClCompile Include="src\common\config.cpp" />
-
-      <ClCompile Include="src\game\ngl\mp\components\audio_module.cpp" />
-      <ClCompile Include="src\game\ngl\mp\components\audio_manager.cpp" />
 
       <ClCompile Include="src\game\ngl\mp\components\save_load.cpp" />
       <ClCompile Include="src\game\ngl\mp\components\project_velocity.cpp" />
@@ -192,10 +188,6 @@
 
       <ClInclude Include="src\common\branding.h" />
       <ClInclude Include="src\common\config.h" />
-
-      <ClInclude Include="src\game\ngl\mp\components\audio_config.h"/>
-      <ClInclude Include="src\game\ngl\mp\components\audio_manager.h"/>
-      <ClInclude Include="src\game\ngl\mp\components\audio_module.h" /> 
        
       <ClInclude Include="src\game\ngl\mp\structs.h" />
       <ClInclude Include="src\game\ngl\mp\symbols.h" />

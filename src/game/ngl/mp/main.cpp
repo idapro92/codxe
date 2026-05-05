@@ -2,7 +2,6 @@
 #include "main.h"
 #include "components/project_velocity.h"
 #include "components/save_load.h"
-#include "components/audio_module.h"
 
 namespace ngl
 {
@@ -59,8 +58,6 @@ NGL_MP_Plugin::NGL_MP_Plugin()
 
     setupPatches();
     
-    auto audio = new audio_module();
-    
     auto save = new save_load();
     
     auto bouncing = new project_velocity();
@@ -68,8 +65,6 @@ NGL_MP_Plugin::NGL_MP_Plugin()
 
     // 2. Register them
     RegisterModule(bouncing);
-    
-    RegisterModule(audio);
     
     RegisterModule(save);
     

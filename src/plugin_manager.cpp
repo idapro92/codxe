@@ -270,7 +270,7 @@ void PluginManager::OnTitleChanged(DWORD title_id, DWORD timestamp)
     // On Xenia we can immediately init the plugin. On the xbox wait a bit for loading
     if (!xbox::IsXenia())
     {
-        Sleep(5000); // Allow some time for the game to load
+        Sleep(2000); // Allow some time for the game to load
     }
 
     auto plugin = info->createPlugin();

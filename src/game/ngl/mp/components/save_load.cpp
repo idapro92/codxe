@@ -2,7 +2,6 @@
 #include <xtl.h>
 #include <stdio.h>
 #include "save_load.h"
-#include "audio_module.h"
 #include <game/ngl/mp/structs.h>
 #include <game/ngl/mp/symbols.h>
 #include <iostream>
@@ -135,7 +134,6 @@ void LoadPosition()
         Engine_SetAngles(liveEntityAddress, g_savedRot);
         Engine_LinkEntity(liveEntityAddress);
         //Sleep(1);
-        audio_module::play_sound("understand_angle");
         CG_GameMessage("^5Position loaded");
     }
 }
@@ -163,7 +161,6 @@ void SavePosition_Hook(int r3, int timestamp, int r5)
             memcpy(g_savedPos, ps->origin, sizeof(float) * 3);
             memcpy(g_savedRot, ps->viewAngles, sizeof(float) * 3);
             g_hasSaved = true;
-            audio_module::play_sound("lets_bounce");
             CG_GameMessage("^5Position saved");
         }
         lastPressTime = timestamp;
@@ -182,25 +179,21 @@ void GamePadEvent_Hook(int clientNum, int button, int down)
         {
             //gentity_t *entity = (gentity_t *)liveEntityAddress;
             //DumpEntityMemory("PLAYERSTATE", entity->ps);
-            audio_module::play_sound("paradox_is_garbage");
             CG_GameMessage("^2DPAD UP");
             break;
         }
         case DPAD_RIGHT:
         {
-            audio_module::play_sound("strike_bounce");
             CG_GameMessage("^3DPAD RIGHT");
             break;
         }
         case DPAD_DOWN:
         {
-            audio_module::play_sound("entirely_possible");
             CG_GameMessage("^4DPAD DOWN");
             break;
         }
         case DPAD_LEFT:
         {
-            audio_module::play_sound("do_you_understand");
             CG_GameMessage("^6DPAD LEFT");
             break;
         }
@@ -224,8 +217,6 @@ void OnPlyrSpwned_Hook(uint32_t r3, uint32_t r4)
     CG_GameMessage("^5Welcome to CoDJumper");
     //Cbuf_AddText("set bg_fallDamageMaxHeight 9999999\n");
     //Cbuf_AddText("set bg_fallDamageMinHeight 9999999\n");
-    
-    audio_module::play_sound("lets_bounce");
     
     OnPlyrSpwned_Detour.GetOriginal<tOnSpawn>()(r3, r4);
 }
