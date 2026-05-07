@@ -13,7 +13,7 @@ const uint32_t NOP_INST = 0x60000000;
 // The Hook function that the Detour will point to
 void PM_ProjectVelocity_Hook(vec3_t in, vec3_t normal, vec3_t out)
 {
-    const float EPSILON = 0.001f;
+    const float EPSILON = 0.3f;
     float normalZ = normal[2];
     float speedXY = (in[0] * in[0]) + (in[1] * in[1]);
 
